@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painting 101 - ArtNest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #008080;
+            --secondary-color: #006666;
+            --light-teal: #e0f2f2;
+        }
+
+        body {
+            background-color: white;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: transparent;
+            padding: 1.5rem 2rem;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: none;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a i {
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover i {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Course Left Section */
+        .course-left {
+            position: sticky;
+            top: 100px;
+        }
+
+        .course-image {
+            margin-bottom: 1.5rem;
+        }
+
+        .course-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Course Content Section */
+        .course-content {
+            padding-right: 2rem;
+        }
+
+        .course-header {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-tag {
+            display: inline-block;
+            background-color: var(--light-teal);
+            color: var(--primary-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Course Details */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            background-color: var(--light-teal);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .detail-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .detail-content {
+            flex: 1;
+        }
+
+        .detail-content h3 {
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .detail-content p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #555;
+        }
+
+        @media (max-width: 576px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+            }
+        }
+
+        /* Price Section */
+        .price-box {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid var(--light-teal);
+            margin: 1.5rem 0;
+        }
+
+        .price-label {
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            margin: 1.5rem 0;
+        }
+
+        .enroll-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin-bottom: 0.8rem;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                padding: 5rem 1.5rem 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .course-left {
+                position: relative;
+                top: 0;
+            }
+
+            .highlight-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .highlight-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Add gradient overlay to image */
+        .course-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 128, 128, 0.1), transparent);
+            border-radius: 15px;
+        }
+
+        /* Enhance detail items */
+        .detail-item {
+            transition: transform 0.3s ease;
+        }
+
+        .detail-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .detail-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Update Highlights section */
+        .highlights {
+            background-color: var(--light-teal);
+            border-radius: 15px;
+            padding: 1.2rem;
+        }
+
+        .highlights h2 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            padding-left: 0.5rem;
+        }
+
+        .highlight-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem;
+            background-color: white;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        .highlight-item:hover {
+            transform: translateX(3px);
+        }
+
+        .highlight-item i {
+            color: var(--primary-color);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .highlight-item span {
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        @media (max-width: 1200px) {
+            .highlight-list {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .highlight-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .highlight-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Enhance price box */
+        .price-box {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-box::before {
+            content: 'Limited Time Offer';
+            position: absolute;
+            top: 1rem;
+            right: -2rem;
+            background: #4CAF50;
+            color: white;
+            padding: 0.3rem 3rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .price-original {
+            color: #666;
+            text-decoration: line-through;
+        }
+
+        .price-discount {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Enhance CTA */
+        .cta-section {
+            text-align: center;
+        }
+
+        .enroll-btn {
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 128, 128, 0.2);
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .seats-left {
+            color: #666;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .seats-left i {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <p class="logo">ArtNest</p>
+            <div class="nav-links">
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="home.html#about"><i class="fas fa-info-circle"></i> About</a>
+                <a href="home.html#classes"><i class="fas fa-palette"></i> Classes</a>
+                <a href="home.html#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="course-left">
+            <div class="course-image">
+                <img src="./assets/painting-class.jpg" alt="Painting Workshop">
+            </div>
+
+            <div class="highlights">
+                <h2>Workshop Highlights</h2>
+                <div class="highlight-list">
+                    <div class="highlight-item">
+                        <i class="fas fa-palette"></i>
+                        <span>Custom Projects</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-history"></i>
+                        <span>Art History</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Creative Skills</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-users"></i>
+                        <span>Social Skills</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Networking Skills</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-gift"></i>
+                        <span>Take-Home Project</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-content">
+            <header class="course-header">
+                <span class="course-tag">Now Enrolling</span>
+                <h1>Painting 101 Workshop</h1>
+                <p class="subtitle">A 7-day creative journey where young artists discover the joy of painting and much
+                    more!</p>
+            </header>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="detail-content">
+                        <h3>Duration</h3>
+                        <p>23rd - 31st December 2024<br>4:15 PM - 5:45 PM</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-child"></i>
+                    <div class="detail-content">
+                        <h3>Age Group</h3>
+                        <p>5 - 15 years<br>Perfect for beginners</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-users"></i>
+                    <div class="detail-content">
+                        <h3>Batch Size</h3>
+                        <p>25 Students Only<br>Limited seats available</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-paint-brush"></i>
+                    <div class="detail-content">
+                        <h3>Materials</h3>
+                        <p>All materials included<br>Everything will be provided</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-box">
+                <p class="price-label">Workshop Fee</p>
+                <div class="price-row">
+                    <span class="price-amount">₹550</span>
+                    <span class="price-original">₹1500</span>
+                    <span class="price-discount">63% OFF</span>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <a href="https://tinyurl.com/register-artnest" class="enroll-btn" target="_blank">Register Now</a>
+                <p class="seats-left">
+                    <i class="fas fa-user-friends"></i>
+                    Only 18 seats remaining
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

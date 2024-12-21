@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtNest - Where Creativity Takes Flight</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #008080;
+            --secondary-color: #006666;
+            --light-teal: #e0f2f2;
+        }
+
+        body {
+            background-color: white;
+            cursor: none;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: transparent;
+            padding: 1.5rem 2rem;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: none;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a i {
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Add active state for current page */
+        .nav-links a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin: 0;
+            margin-top: 0;
+            background-color: var(--light-teal);
+            padding: 8rem 2rem 6rem 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            top: 0;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            color: #444;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero {
+                margin: 0;
+                top: 0;
+                border-radius: 0 0 20px 20px;
+            }
+        }
+
+        /* Why ArtNest Section */
+        .why-artnest {
+            padding: 5rem 2rem;
+            background-color: white;
+            border: 2px solid var(--light-teal);
+            border-radius: 30px;
+            margin: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 128, 128, 0.05);
+        }
+
+        .why-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .why-content::before {
+            content: '';
+            position: absolute;
+            top: -3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .why-content h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background-color: var(--light-teal);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #444;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .why-artnest {
+                margin: 1rem;
+                padding: 3rem 1rem;
+                border-radius: 20px;
+            }
+
+            .why-content h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Classes Section */
+        .classes {
+            padding: 5rem 2rem;
+            background-color: var(--light-teal);
+            margin-top: 2rem;
+        }
+
+        .classes-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .classes-content h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .class-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 0;
+            box-shadow: 0 4px 15px rgba(0, 128, 128, 0.1);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .class-card-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--light-teal);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .class-card-content {
+            padding: 1.5rem;
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .class-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .class-header h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .class-header h3 i {
+            font-size: 1.2rem;
+        }
+
+        .class-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .class-details {
+            background-color: var(--light-teal);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .class-details p {
+            color: #444;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .class-details p:last-child {
+            margin-bottom: 0;
+        }
+
+        .class-details i {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag.live {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .tag.coming-soon {
+            background-color: #FFA500;
+            color: white;
+        }
+
+        .class-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 25px;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .class-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .class-btn.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            border: none;
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .class-btn.disabled:hover {
+            background-color: #bbb;
+        }
+
+        @media (max-width: 1200px) {
+            .classes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .classes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .class-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .live-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .live-tag i {
+            font-size: 0.8rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background-color: white;
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-content h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background-color: var(--light-teal);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-card i {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-card p {
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .contact-card a {
+            color: #444;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .contact {
+                padding: 3rem 1rem;
+            }
+
+            .contact-content h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-nav {
+            margin-bottom: 1rem;
+        }
+
+        .footer-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .separator {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 1.5rem 1rem;
+            }
+
+            .footer-nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .footer-nav a {
+                padding: 0.5rem;
+            }
+
+            .separator {
+                display: none;
+            }
+        }
+
+        /* Add this to your CSS */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Founder Message Section */
+        .founder-message {
+            padding: 5rem 2rem;
+            background-color: white;
+        }
+
+        .founder-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .message-wrapper {
+            background-color: var(--light-teal);
+            padding: 3rem;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .message-wrapper h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .quote {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 2rem;
+        }
+
+        .quote p {
+            margin-bottom: 1.5rem;
+        }
+
+        .quote p:last-child {
+            margin-bottom: 0;
+        }
+
+        .founder-signature {
+            margin-top: 2rem;
+            color: var(--primary-color);
+        }
+
+        .founder-signature p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .founder-signature span {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .founder-message {
+                padding: 3rem 1rem;
+            }
+
+            .message-wrapper {
+                padding: 2rem;
+            }
+
+            .message-wrapper h2 {
+                font-size: 1.8rem;
+            }
+
+            .quote {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+        }
+
+        /* Modal Styles */
+        .course-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2rem auto;
+            max-width: 1200px;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .close-modal {
+            position: fixed;
+            top: 1rem;
+            right: 2rem;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        /* Course Details Styles */
+        .course-hero {
+            background-color: var(--light-teal);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        /* Custom Cursor Styles */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cursor::after {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .cursor.grow {
+            transform: scale(2);
+            background: rgba(0, 128, 128, 0.1);
+        }
+
+        .paint-trail {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            animation: sparkleAnimation 1s linear forwards;
+        }
+
+        @keyframes sparkleAnimation {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* SVG Sparkle styles */
+        .sparkle svg {
+            width: 15px;
+            height: 15px;
+            fill: var(--primary-color);
+            opacity: 0.6;
+        }
+
+        /* Update interactive elements to show cursor */
+        a,
+        button,
+        .class-card,
+        .feature-card,
+        .contact-card {
+            cursor: none;
+        }
+
+        a:hover~.cursor,
+        button:hover~.cursor,
+        .class-card:hover~.cursor,
+        .feature-card:hover~.cursor,
+        .contact-card:hover~.cursor {
+            transform: scale(2);
+            background: rgba(0, 128, 128, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <section class="ad">
+        <div class="ad-content">
+            <p> Hurry! Limited Seats Available for Painting 101 Workshop Enroll Now -></p>
+        </div>
+    </section>
+    <nav class="navbar">
+        <div class="nav-content">
+            <p class="logo"> ArtNest</p>
+            <div class="nav-links">
+                <a href="#home"><i class="fas fa-home"></i> Home</a>
+                <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+                <a href="#classes"><i class="fas fa-palette"></i> Classes</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover Your Creative Journey with ArtNest</h1>
+            <p>Where creativity takes flight! Explore the joy of art, one brushstroke at a time. Start your creative
+                adventure today.</p>
+            <a href="#classes" class="cta-button">Enroll Courses</a>
+        </div>
+    </section>
+
+    <section class="founder-message">
+        <div class="founder-content">
+            <div class="message-wrapper">
+                <h2>Our Story & Vision</h2>
+                <div class="quote">
+                    <p>"Art is not just a form of expression but a way to see the world differently. As a mother of
+                        Gen-Alpha and Gen-Z, I've enjoyed teaching my kids about art and helping them embrace
+                        creativity. While AI dominates today's world, human creativity stands unmatched, and art is one
+                        of the greatest forms of that creativity."</p>
+                    <p>In my workshops, kids not only learn art skills but also small life lessons to enrich their
+                        thinking, creativity, and joy!</p>
+                </div>
+                <div class="founder-signature">
+                    <p>- Kayalvizhi</p>
+                    <span>Founder, ArtNest</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-artnest" id="about">
+        <div class="why-content">
+            <h2>Why Choose ArtNest?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Fun & Engaging</h3>
+                    <p>A 7-day creative journey to spark imagination and hone artistic skills.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Limited Seats</h3>
+                    <p>Only 25 students per batch for personalized attention.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Holiday Perfect</h3>
+                    <p>Combine learning and fun during the holiday season.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Unique Experience</h3>
+                    <p>Build patience, focus, and creative confidence through guided practice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="classes" id="classes">
+        <div class="classes-content">
+            <h2>Classes with ArtNest</h2>
+            <div class="classes-grid">
+                <div class="class-card">
+                    <div class="class-card-image">
+                        <!-- Image will be added here -->
+                        <div class="live-tag">
+                            <i class="fas fa-circle"></i> Now Live! Hurry
+                        </div>
+                        <img src="./assets/painting-class.jpg" alt="">
+                    </div>
+                    <div class="class-card-content">
+                        <div class="class-header">
+                            <h3><i class="fas fa-paint-brush"></i> Painting Class</h3>
+                        </div>
+                        <p class="class-description">Explore various painting techniques and create beautiful artworks
+                        </p>
+                        <div class="class-details">
+                            <p><i class="fas fa-calendar-day"></i> 7 Days</p>
+                            <p><i class="fas fa-users"></i> 25 Seats</p>
+                        </div>
+                        <a href="./painting-101.html" class="class-btn">View Details</a>
+                    </div>
+                </div>
+
+
+                <div class="class-card">
+                    <div class="class-card-image">
+                        <!-- Image will be added here -->
+                        <img src="./assets/aari-class.jpg" alt="">
+                    </div>
+                    <div class="class-card-content">
+                        <div class="class-header">
+                            <h3><i class="fas fa-pen-fancy"></i> Aari Embroidery</h3>
+                        </div>
+                        <p class="class-description">Master the art of traditional Aari embroidery techniques</p>
+                        <div class="class-details">
+                            <p><i class="fas fa-calendar-day"></i> 7 Days</p>
+                            <p><i class="fas fa-users"></i> 25 Seats</p>
+                        </div>
+                        <button class="class-btn disabled">Coming Soon</button>
+                    </div>
+                </div>
+
+
+
+                <div class="class-card">
+                    <div class="class-card-image">
+                        <!-- Image will be added here -->
+                        <img src="./assets/bujo-class.jpg" alt="">
+                    </div>
+                    <div class="class-card-content">
+                        <div class="class-header">
+                            <h3><i class="fas fa-book"></i> Bujo 101</h3>
+                        </div>
+                        <p class="class-description">Create beautiful bullet journals with artistic layouts</p>
+                        <div class="class-details">
+                            <p><i class="fas fa-calendar-day"></i> 4 Days</p>
+                            <p><i class="fas fa-users"></i> 25 Seats</p>
+                        </div>
+                        <button class="class-btn disabled">Coming Soon</button>
+                    </div>
+                </div>
+
+
+
+                <div class="class-card">
+                    <div class="class-card-image">
+                        <!-- Image will be added here -->
+                        <img src="./assets/soap-class.jpg" alt="">
+                    </div>
+                    <div class="class-card-content">
+                        <div class="class-header">
+                            <h3><i class="fas fa-soap"></i> Soap Making</h3>
+                        </div>
+                        <p class="class-description">Learn to create handmade soaps with natural ingredients</p>
+                        <div class="class-details">
+                            <p><i class="fas fa-calendar-day"></i> 7 Days</p>
+                            <p><i class="fas fa-users"></i> 25 Seats</p>
+                        </div>
+                        <button class="class-btn disabled">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p><a href="tel:+917897897897">+91 7010384955</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>SuryaCity, Phase 1,<br>
+                        Chandapura, Anekal Main Road,<br>
+                        Bangalore, Karnataka - 560081</p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p><a href="mailto:hi.artnest@gmail.com">hi.artnest@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <nav class="footer-nav">
+                <a href="#home">Home</a>
+                <span class="separator">|</span>
+                <a href="#about">About</a>
+                <span class="separator">|</span>
+                <a href="#classes">Classes</a>
+                <span class="separator">|</span>
+                <a href="#contact">Contact</a>
+            </nav>
+            <p class="copyright">&copy; 2024 ArtNest by Kayalvizhi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="cursor"></div>
+    <div class="paint-trail"></div>
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+        const paintTrail = document.querySelector('.paint-trail');
+        let sparkles = [];
+
+        // SVG sparkle template
+        const sparkleTemplate = `
+            <svg viewBox="0 0 24 24">
+                <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+            </svg>
+        `;
+
+        document.addEventListener('mousemove', (e) => {
+            // Move cursor
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+
+            // Create sparkles
+            if (Math.random() > 0.85) { // Adjust frequency of sparkles
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.innerHTML = sparkleTemplate;
+
+                // Random position around cursor
+                const offset = 20;
+                const randomX = e.clientX + (Math.random() - 0.5) * offset;
+                const randomY = e.clientY + (Math.random() - 0.5) * offset;
+
+                sparkle.style.left = randomX + 'px';
+                sparkle.style.top = randomY + 'px';
+
+                // Random rotation and scale
+                const rotation = Math.random() * 360;
+                const scale = Math.random() * 0.5 + 0.5;
+                sparkle.style.transform = `rotate(${rotation}deg) scale(${scale})`;
+
+                paintTrail.appendChild(sparkle);
+                sparkles.push(sparkle);
+
+                // Remove sparkle after animation
+                setTimeout(() => {
+                    sparkle.remove();
+                    sparkles = sparkles.filter(s => s !== sparkle);
+                }, 1000);
+            }
+        });
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+            cursor.style.display = 'none';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.display = 'flex';
+        });
+
+        // Add grow effect on interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .class-card, .feature-card, .contact-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseover', () => cursor.classList.add('grow'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+        });
+    </script>
+</body>
+
+</html>
+
+</body>
+
+</html>
